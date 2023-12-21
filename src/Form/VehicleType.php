@@ -20,8 +20,8 @@ class VehicleType extends AbstractType
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => [
-                    'Ordinary' => 1,
-                    'Luxury' => 2
+                    'Ordinaire' => 1,
+                    'Luxe' => 2
                 ],
                 'label' => 'Type de véhicule'    
             ])
