@@ -1,9 +1,13 @@
 ![Static Badge](https://img.shields.io/badge/php-8.1.2-blue)
 ![Static Badge](https://img.shields.io/badge/symfony-6.4.1-green)
+![Static Badge](https://img.shields.io/badge/React-18.2-red)
 
 # Auction calculation
 
-Auction calculation allows to calculate the final price (fees included) of a car given a type and a price.
+Auction calculation allows to calculate the final price (fees included) of a car given a type and a price.\
+Calculations are made in back-end using PHP.\
+Symfony serves a POST API to handle data send by Javascript.
+
 
 ## Installation
 
