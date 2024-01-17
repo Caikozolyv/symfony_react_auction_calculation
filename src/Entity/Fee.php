@@ -4,7 +4,7 @@ namespace App\Entity;
 
 class Fee 
 {
-    private float $price;
+    private float $price    ;
     private float $userFees;
     private float $specialFees;
     private float $associationFees;
@@ -13,12 +13,12 @@ class Fee
 
     
     public function __construct(
-        float $price, 
-        float $userFees, 
-        float $specialFees, 
-        float $associationFees, 
-        float $storageCosts,
-        float $totalPrice
+        float $price = 0, 
+        float $userFees= 0, 
+        float $specialFees = 0, 
+        float $associationFees = 0, 
+        float $storageCosts = 100,
+        float $totalPrice = 100
         ) {
         $this->price = $price;
         $this->userFees = $userFees;

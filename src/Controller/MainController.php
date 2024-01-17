@@ -19,8 +19,8 @@ class MainController extends AbstractController
     public function index(Request $request, FeeCalculator $feeCalculator): Response
     {
         // Intializing form fields
-        $vehicle = new Vehicle(0);
-        $fees = new Fee(0, 0, 0, 0, 0, 0);
+        $vehicle = new Vehicle();
+        $fees = new Fee();
         $form = $this->createForm(VehicleType::class, $vehicle);
         $form->handleRequest($request);
         if ($request->isMethod('POST')) {

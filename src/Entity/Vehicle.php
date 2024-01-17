@@ -9,7 +9,7 @@ class Vehicle
     public const USER_FEES = 10;
 
     public const STORAGE_COSTS = 100;
-    public function __construct(float $price) 
+    public function __construct(float $price = 0) 
     {
         $this->price = $price;
     }
