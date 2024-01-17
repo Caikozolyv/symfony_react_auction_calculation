@@ -4,7 +4,7 @@ namespace App\Entity;
 
 class Vehicle 
 {
-    protected string $type;
+    protected int $type;
     protected float $price;
     public const USER_FEES = 10;
 

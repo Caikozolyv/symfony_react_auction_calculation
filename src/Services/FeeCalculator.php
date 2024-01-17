@@ -15,12 +15,11 @@ class FeeCalculator
         $specialFees = $this->calculateSpecialFees($vehicle);
         $associationFees = $this->calculateAssociationFees($vehicle);
         return [
-            "price" => $vehicle->getPrice(),
-            "user_fees" => $userFees,
-            "special_fees" => $specialFees,
+            "user_fees" => round($userFees, 2),
+            "special_fees" => round($specialFees, 2),
             "association_fees" => $associationFees,
             "storage_costs" => $vehicle::STORAGE_COSTS,
-            "total_price" => $vehicle->getPrice()+$userFees+$specialFees+$associationFees+$vehicle::STORAGE_COSTS,
+            "total_price" => round($vehicle->getPrice()+$userFees+$specialFees+$associationFees+$vehicle::STORAGE_COSTS, 2),
         ];
     }
 

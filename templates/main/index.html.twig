@@ -4,60 +4,6 @@
 
 {% block body %}
 
-<div class="center">
-    <h1>Calcul d'encan</h1>
-    {{ form_start(form) }}
-    
-    <div class="form-group">
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                {{ form_label(form.price) }}
-                {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="row">     
-            <div class="col-md-4 offset-md-4">
-                {{ form_label(form.type) }}
-                {{ form_widget(form.type, {'attr': {'class': 'form-control'}}) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                {{ form_label(form.userFees) }}
-                {{ form_widget(form.userFees, {'attr': {'class': 'form-control'}, 'value':fees.userFees}) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                {{ form_label(form.specialFees) }}
-                {{ form_widget(form.specialFees, {'attr': {'class': 'form-control'}, 'value':fees.specialFees}) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                {{ form_label(form.associationFees) }}
-                {{ form_widget(form.associationFees, {'attr': {'class': 'form-control'}, 'value':fees.associationFees}) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                {{ form_label(form.storageCosts) }}
-                {{ form_widget(form.storageCosts, {'attr': {'class': 'form-control'}, 'value':fees.storageCosts}) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                {{ form_label(form.totalPrice) }}
-                {{ form_widget(form.totalPrice, {'attr': {'class': 'form-control'}, 'value':fees.totalPrice}) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 offset-md-4">
-                {{ form_label(form.save) }}
-                {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'},}) }}
-            </div>
-        </div>
-    {{ form_end(form) }}
-</div>
+<div id="app"></div>
 
 {% endblock %}

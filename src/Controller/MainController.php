@@ -3,48 +3,43 @@
 namespace App\Controller;
 
 use App\Entity\Fee;
-use App\Entity\Vehicle;
-use App\Form\VehicleType;
 use App\Entity\LuxuryVehicle;
 use App\Entity\OrdinaryVehicle;
 use App\Services\FeeCalculator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
 {
     #[Route('/', name: 'app_main')]
-    public function index(Request $request, FeeCalculator $feeCalculator): Response
+    public function index(): Response
     {
-        // Intializing form fields
-        $vehicle = new Vehicle();
-        $fees = new Fee();
-        $form = $this->createForm(VehicleType::class, $vehicle);
-        $form->handleRequest($request);
-        if ($request->isMethod('POST')) {
-            if ($form->isSubmitted() && $form->isValid()) {
-                $data = $form->getData();
-                $price = $data->getPrice();
-                $vehicle = $data->getType() == 1 ? new OrdinaryVehicle($price) : new LuxuryVehicle($price);
-                $fees = $feeCalculator->calculateTotalFees($vehicle);
-                // Use object for facility of use
-                $fees = new Fee(
-                    $fees["price"], 
-                    $fees["user_fees"], 
-                    $fees["special_fees"], 
-                    $fees["association_fees"], 
-                    $fees["storage_costs"],
-                    $fees["total_price"]
-                );
-            }
-        }
-
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
-            'form' => $form,
-            'fees' => $fees
+            'controller_name' => 'MainController'
         ]);
+    }
+
+    /**
+     * POST API
+     * Take price and type
+     * Return fees as JSON 
+     */
+    #[Route('/fees', name: 'app_api')]
+    public function apiFees(Request $request, FeeCalculator $feeCalculator, SerializerInterface $serializer)
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        if(!empty($data)) {
+            $price = intval($data['price']);
+            $type = intval($data['type']);
+            $vehicle = $type === 1 ? new OrdinaryVehicle($price) : new LuxuryVehicle($price);  
+            $fees = $feeCalculator->calculateTotalFees($vehicle);
+            return new JsonResponse(json_encode($fees));
+    
+        }
+        return new JsonResponse($serializer->serialize(new Fee(), 'json'));
     }
 }
